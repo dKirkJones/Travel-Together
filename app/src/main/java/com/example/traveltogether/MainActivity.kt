@@ -14,6 +14,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
+    private  val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
     val attractionsList: List<Attraction> by lazy {
        parseAttractions()
@@ -29,12 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun parseAttractions(): List<Attraction> {
         val textFromFile = resources.openRawResource(R.raw.croatia).bufferedReader().use { it.readText() }
 
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-
-        val type = Types.newParameterizedType(
-            List::class.java,
-            Attraction::class.java
-        )
+        val type = Types.newParameterizedType(List::class.java, Attraction::class.java)
         val adapter: JsonAdapter<AttractionsResponse> = moshi.adapter(AttractionsResponse::class.java)
         return adapter.fromJson(textFromFile)!!.attractions
     }
