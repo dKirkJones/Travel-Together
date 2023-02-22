@@ -1,12 +1,12 @@
-package com.example.traveltogether.ui
+package com.example.traveltogether.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traveltogether.BaseFragment
-import com.example.traveltogether.R
+import com.example.traveltogether.fragment.BaseFragment
 import com.example.traveltogether.databinding.FragmentHomeBinding
 
 class HomeFragment: BaseFragment() {
@@ -24,7 +24,14 @@ class HomeFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = binding.recyclerView
+        val homeAdapter =  HomeFragmentAdapter{
+            // to handle item being clicked
+        }
+
+        binding.recyclerView.adapter = homeAdapter
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), RecyclerView.VERTICAL))
+
+        homeAdapter.setData(attractions)
     }
 
     override fun onDestroyView() {

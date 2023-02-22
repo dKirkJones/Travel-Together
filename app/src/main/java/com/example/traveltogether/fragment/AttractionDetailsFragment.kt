@@ -1,4 +1,4 @@
-package com.example.traveltogether.ui
+package com.example.traveltogether.fragment
 
 import androidx.fragment.app.Fragment
 
