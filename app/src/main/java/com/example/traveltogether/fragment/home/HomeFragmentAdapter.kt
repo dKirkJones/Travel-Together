@@ -9,7 +9,7 @@ import com.example.traveltogether.databinding.ViewHolderAttractiopnBinding
 import com.squareup.picasso.Picasso
 
 class HomeFragmentAdapter(
-    private val onClickedCallback: ()-> Unit
+    private val onClickedCallback: (String)-> Unit
 
 ) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -37,7 +37,7 @@ class HomeFragmentAdapter(
         LayoutInflater.from(parent.context).inflate(R.layout.view_holder_attractiopn, parent, false)
     ){
         private val binding = ViewHolderAttractiopnBinding.bind(itemView)
-        fun onBind(attraction: Attraction, onClicked: ()  -> Unit){
+        fun onBind(attraction: Attraction, onClicked: (String)  -> Unit){
             binding.titleTextView.text = attraction.title
             //load image with Piccaso
             Picasso.get().load(attraction.image_url).into(binding.headerImageview)
@@ -45,7 +45,7 @@ class HomeFragmentAdapter(
             binding.monthsToVisit.text = attraction.months_to_visit
 
             binding.root.setOnClickListener{
-                onClicked()
+                onClicked(attraction.id)
             }
 
         }
