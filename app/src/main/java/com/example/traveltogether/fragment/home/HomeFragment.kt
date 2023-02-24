@@ -30,7 +30,6 @@ class HomeFragment: BaseFragment() {
         }
 
         binding.recyclerView.adapter = homeAdapter
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), RecyclerView.VERTICAL))
 
         homeAdapter.setData(attractions)
     }

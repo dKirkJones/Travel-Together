@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltogether.R
 import com.example.traveltogether.data.Attraction
-import com.example.traveltogether.databinding.ViewHolderAttractiopnBinding
+import com.example.traveltogether.databinding.ViewHolderAttractionCardBinding
 import com.squareup.picasso.Picasso
 
 class HomeFragmentAdapter(
@@ -34,16 +34,13 @@ class HomeFragmentAdapter(
     }
 
     inner class AttractionViewHolder(parent: ViewGroup): RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.view_holder_attractiopn, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.view_holder_attraction_card, parent, false)
     ){
-        private val binding = ViewHolderAttractiopnBinding.bind(itemView)
+        private val binding = ViewHolderAttractionCardBinding.bind(itemView)
         fun onBind(attraction: Attraction, onClicked: (String)  -> Unit){
             binding.titleTextView.text = attraction.title
-            //load image with Piccaso
             Picasso.get().load(attraction.image_url).into(binding.headerImageView)
-           // Picasso.get().load(attraction.image_urls).into(binding.headerImageview)
             binding.monthsToVisitTextView.text = attraction.months_to_visit
-
             binding.root.setOnClickListener{
                 onClicked(attraction.id)
             }
