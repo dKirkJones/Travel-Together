@@ -40,9 +40,9 @@ class HomeFragmentAdapter(
         fun onBind(attraction: Attraction, onClicked: (String)  -> Unit){
             binding.titleTextView.text = attraction.title
             //load image with Piccaso
-            Picasso.get().load(attraction.image_url).into(binding.headerImageview)
+            Picasso.get().load(attraction.image_url).into(binding.headerImageView)
            // Picasso.get().load(attraction.image_urls).into(binding.headerImageview)
-            binding.monthsToVisit.text = attraction.months_to_visit
+            binding.monthsToVisitTextView.text = attraction.months_to_visit
 
             binding.root.setOnClickListener{
                 onClicked(attraction.id)
